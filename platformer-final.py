@@ -180,6 +180,7 @@ class Hero(pygame.sprite.Sprite):
             bullet = Bullet(bullet_image)
             bullet.rect.centerx = self.rect.centerx
             bullet.rect.centery = self.rect.centery
+            bullet.theta = bullet.find_theta()
             if not self.facing_right:
                 bullet.speed *= -1
             level.bullets.add(bullet)
@@ -300,9 +301,8 @@ class Bullet(pygame.sprite.Sprite):
         self.speed = 30
         self.theta = None
         self.dis_dis = None
-        self.perception_rad = 75.0
         self.velocity = []
-        self.reverse = False
+
     
     def shoot(self):
         SHOOT_SOUND.play()
@@ -313,30 +313,22 @@ class Bullet(pygame.sprite.Sprite):
         dis_y = pos[1] - self.rect.centery
         self.dis_dis = math.sqrt((dis_x**2 + dis_y**2))
 
-        if self.dis_dis == 0:
-            self.kill()
-        else:
-            self.theta = math.asin(dis_x/self.dis_dis)
+
+        self.theta = math.asin(dis_y/self.dis_dis)
 
         self.find_velocity()
 
     def find_velocity(self):
         vx = math.cos(self.theta) * self.speed
-        vy = -1 * math.sin(self.theta) * self.speed
+        vy = math.sin(self.theta) * self.speed
         self.velocity = [vx, vy]
 
 
 
     def update(self, level):
-        self.rect.x += self.speed
 
-        self.find_theta()
-        if self.dis_dis > self.perception_rad and not self.reverse:
-            pass
-        else:
-            #self.reverse = True
-            self.velocity[0] *= -1
-            self.velocity[1] *= 1
+        # self.velocity[0] *= -1
+        # self.velocity[1] *= -1
 
         self.rect.x += self.velocity[0]
         self.rect.y += self.velocity[1]
@@ -738,6 +730,7 @@ class Level():
                 self.grid.blit(text, [x + 4, y + 4])     
 
 # Main game class
+
 class Game():
 
     START = 0
