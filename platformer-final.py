@@ -58,11 +58,11 @@ jump_snd = load_sound('assets/sounds/jump.ogg')
 gem_snd = load_sound('assets/sounds/gem.ogg')
 
 # Images
-idle = load_image('assets/images/characters/platformChar_idle.png')
-walk = [load_image('assets/images/characters/platformChar_walk1.png'),
-        load_image('assets/images/characters/platformChar_walk2.png')]
-jump = load_image('assets/images/characters/platformChar_jump.png')
-hurt = load_image('assets/images/characters/platformChar_hurt.png')
+idle = load_image('assets/images/characters/player_stand_trans.png')
+walk = [load_image('assets/images/characters/player_walk2_trans.png'),
+        load_image('assets/images/characters/player_walk1_trans.png')]
+jump = load_image('assets/images/characters/player_jump_trans.png')
+hurt = load_image('assets/images/characters/player_hurt_trans.png')
                    
 hero_images = { "idle_rt": idle,
                 "walk_rt": walk,
@@ -73,10 +73,13 @@ hero_images = { "idle_rt": idle,
                 "jump_lt": flip_image(jump),
                 "hurt_lt": flip_image(hurt) }
              
-tile_images = { "Grass": load_image('assets/images/tiles/platformPack_tile001.png'),
+tile_images = { "Grass": load_image('assets/images/tiles/grass.png'),
                 "Dirt": load_image('assets/images/tiles/platformPack_tile007.png'),
-                "Platform": load_image('assets/images/tiles/platformPack_tile007.png'),
+                "Platform": load_image('assets/images/tiles/platformPack_tile034.png'),
                 "Plant": load_image('assets/images/tiles/platformPack_tile045.png'),
+                "Brick": load_image('assets/images/tiles/platformPack_tile040.png'),
+                "Stone": load_image('assets/images/tiles/platformPack_tile041.png'),
+                "Platform_g": load_image('assets/images/tiles/platformPack_tile041.png'),
                 "FlagTop": load_image('assets/images/tiles/medievalTile_166.png'),
                 "FlagPole": load_image('assets/images/tiles/medievalTile_190.png'),
                 "Door_open" : load_image('assets/images/tiles/platformPack_tile062.png')}
@@ -180,9 +183,7 @@ class Hero(pygame.sprite.Sprite):
             bullet = Bullet(bullet_image)
             bullet.rect.centerx = self.rect.centerx
             bullet.rect.centery = self.rect.centery
-            bullet.theta = bullet.find_theta()
-            if not self.facing_right:
-                bullet.speed *= -1
+            bullet.theta = bullet.find_theta(self, game)
             level.bullets.add(bullet)
             game.active_sprites.add(bullet)
             
@@ -303,36 +304,53 @@ class Bullet(pygame.sprite.Sprite):
         self.dis_dis = None
         self.velocity = []
 
-    
     def shoot(self):
         SHOOT_SOUND.play()
 
-    def find_theta(self):
+    def find_theta(self, hero, game):
+        offset_x, offset_y = game.calculate_offset()
         pos = pygame.mouse.get_pos()
-        dis_x = pos[0] - self.rect.centerx
+        dis_x = (pos[0] + (-1*offset_x)) - self.rect.centerx
         dis_y = pos[1] - self.rect.centery
         self.dis_dis = math.sqrt((dis_x**2 + dis_y**2))
 
-
         self.theta = math.asin(dis_y/self.dis_dis)
 
-        self.find_velocity()
+        self.find_velocity(hero)
 
-    def find_velocity(self):
-        vx = math.cos(self.theta) * self.speed
+    def find_velocity(self, hero):
+        if not hero.facing_right:
+            vx = math.cos(self.theta) * -1 * self.speed
+        else:
+            vx = math.cos(self.theta) * self.speed
         vy = math.sin(self.theta) * self.speed
         self.velocity = [vx, vy]
 
+    def check_walls_and_blocks(self, level):
+        hit_list = pygame.sprite.spritecollide(self, level.main_tiles, False)
+
+        for hit in hit_list:
+            if self.velocity[0] > 0:
+                self.kill()
+            elif self.velocity[0] < 0:
+                self.kill()
+            self.velocity[0] = 0
+
+        hit_list = pygame.sprite.spritecollide(self, level.main_tiles, False)
+
+        for hit in hit_list:
+            if self.velocity[1] > 0:
+                self.kill()
+            elif self.velocity[1] < 0:
+                self.kill()
+                self.velocity[1] = 0
 
 
     def update(self, level):
-
-        # self.velocity[0] *= -1
-        # self.velocity[1] *= -1
-
         self.rect.x += self.velocity[0]
         self.rect.y += self.velocity[1]
 
+        self.check_walls_and_blocks(level)
 
         if self.rect.left > level.width or self.rect.right < 0:
             self.kill()
