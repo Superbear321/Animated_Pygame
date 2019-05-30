@@ -1,0 +1,146 @@
+{
+	"layout": {
+		"scale": 64,
+		"size": [48, 9],
+		"start": [1, 7],
+		"goal": [44, 3, 2, 5]
+	},
+
+	"physics": {
+		"gravity": 1.5,
+		"terminal_velocity": 36
+	},
+
+	"music": "assets/sounds/theme.ogg",
+
+	"background": {
+		"color": [0, 0, 0],
+		"image1": "assets/images/backgrounds/brick_back.png",
+		"image2": "assets/images/backgrounds/brick_back.png",
+		"parallax_speed1": 0.6,
+		"parallax_speed2": 0.3
+	},
+
+	"tiles": {
+		"midground": [
+			[44.8, 4, "FlagTop"],
+			[44.8, 5, "FlagPole"],
+			[44.8, 6, "FlagPole"],
+			[44.8, 7, "FlagPole"],
+			[24, 1, "Door_open"]
+		],
+
+		"main": [
+			[1, 8, "Brick"],
+			[2, 8, "Brick"],
+			[3, 8, "Brick"],
+			[0, 8, "Brick"],
+			[4, 8, "Brick"],
+			[5, 8, "Brick"],
+			[6, 8, "Brick"],
+			[7, 8, "Brick"],
+			[8, 8, "Brick"],
+			[9, 8, "Brick"],
+			[10, 8, "Brick"],
+			[11, 8, "Brick"],
+			[12, 8, "Brick"],
+			[13, 8, "Brick"],
+			[14, 8, "Brick"],
+			[15, 8, "Brick"],
+			[16, 8, "Brick"],
+			[17, 8, "Brick"],
+			[18, 8, "Brick"],
+			[19, 8, "Brick"],
+			[20, 8, "Brick"],
+			[21, 8, "Brick"],
+			[22, 8, "Brick"],
+			[23, 8, "Brick"],
+			[24, 8, "Brick"],
+			[25, 8, "Brick"],
+			[26, 8, "Brick"],
+			[27, 8, "Brick"],
+			[28, 8, "Brick"],
+			[29, 8, "Brick"],
+			[30, 8, "Brick"],
+			[31, 8, "Brick"],
+			[32, 8, "Brick"],
+			[33, 8, "Brick"],
+			[34, 8, "Brick"],
+			[35, 8, "Brick"],
+			[36, 8, "Brick"],
+			[37, 8, "Brick"],
+			[38, 8, "Brick"],
+			[39, 8, "Brick"],
+			[40, 8, "Brick"],
+			[41, 8, "Brick"],
+			[42, 8, "Brick"],
+			[43, 8, "Brick"],
+			[44, 8, "Brick"],
+			[45, 8, "Brick"],
+			[46, 8, "Brick"],
+			[47, 8, "Brick"],
+
+			[4, 2, "Stone"],
+			[8, 3, "Stone"],
+			[9, 3, "Stone"],
+			[10, 3, "Stone"],
+			[11, 3, "Stone"],
+			[12, 3, "Stone"],
+
+			[15, 5, "Stone"],
+
+			[18, 6, "Stone"],
+			[19, 6, "Stone"],
+			[20, 6, "Stone"],
+
+			[24, 2, "Stone"],
+			[25, 2, "Stone"],
+			[26, 2, "Stone"],
+			[27, 2, "Stone"],
+			[27, 1, "Stone"],
+			[24, 0, "Stone"],
+			[25, 0, "Stone"],
+			[26, 0, "Stone"],
+			[27, 0, "Stone"],
+			[23, 2, "Stone"],
+
+			[28, 5, "Stone"],
+			[29, 5, "Stone"],
+			[20, 5, "Stone"]
+		],
+
+		"foreground": [
+			[12, 7, "Plant"],
+			[19, 7, "Plant"],
+			[34, 7, "Plant"]
+
+			
+		]
+	},
+
+	"items": [
+		[10, 2, "Gem"],
+		[25, 1, "Gem"],
+		[26, 1, "Gem"],
+		[29, 4, "Gem"],
+		[29, 7 , "Gem"],
+		[4, 1, "Key_y"]
+	],
+
+	"doors": [
+		[24, 1, "Door_close"]
+	],
+
+	"enemies": [
+		[11, 2, "BasicEnemy"],
+		[18, 7, "BasicEnemy"],
+		[25, 7, "BasicEnemy"],
+		[34, 7, "BasicEnemy"],
+		[19, 5, "PlatformEnemy"],
+		[28, 4, "PlatformEnemy"],
+		[28, 4, "PlatformEnemy"],
+		[34, 3, "PlatformEnemy"],
+		[19, 5, "PlatformEnemy"],
+		[34, 3, "PlatformEnemy"]
+	]
+}
