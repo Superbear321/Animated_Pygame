@@ -39,3 +39,5 @@ You have three hearts to get though all three levels. You loose hearts by gettin
 ![alt text](https://raw.githubusercontent.com/Superbear321/Side_Scroller/master/Gameplay.PNG)
 
 ## [Releases of _Side Scroller_](https://github.com/Superbear321/Side_Scroller/releases)
+
+## [Download of Side Scroller 1.0.0](https://github.com/Superbear321/Side_Scroller/releases/download/1.0.0/Side.Scroller.1.0.0.exe)
