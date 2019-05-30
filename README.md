@@ -30,4 +30,6 @@ You will need to collect all the gems in the level and kill all the enemies to p
 
 You have three hearts to get though all three levels. You loose hearts by getting hit by enemies. You will know that you got hit when you heart counter in the upper left corner drops one, next to the `H:`, and you will go into a differnet anamation. You ave 1/2 seconds to get away from the enmey before it will hurt you again. This makes it so that you do not lose all your lifes from one hit.
 
+## Start Screen
 
+![alt text](https://raw.githubusercontent.com/Superbear321/Side_Scroller/master/Startscreen.PNG)
