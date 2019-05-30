@@ -36,4 +36,4 @@ You have three hearts to get though all three levels. You loose hearts by gettin
 
 ## Game PLay
 
-![alt text](https://raw.githubusercontent.com/Superbear321/Side_Scroller/master/Startscreen.PNG)
+![alt text](https://raw.githubusercontent.com/Superbear321/Side_Scroller/master/Gameplay.PNG)
